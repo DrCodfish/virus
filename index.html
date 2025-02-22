@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vine Boom Prank</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            background-color: #222;
+            color: white;
+            padding: 50px;
+        }
+        button {
+            padding: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #ff5733;
+            border: none;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the Button to Hear Something Funny!</h1>
+    <button id="prankButton">Do it!</button>
+
+    <audio id="vineBoom" src="vineboom.mp3" preload="auto"></audio> <!-- Vine Boom sound -->
+    
+    <script>
+        // Get the button and sound
+        const prankButton = document.getElementById('prankButton');
+        const vineBoom = document.getElementById('vineBoom');
+        
+        // Function to simulate the "volume" prank
+        function prank() {
+            // Increase volume by setting it to max (1.0 is full volume)
+            vineBoom.volume = 1.0; // Can adjust volume levels (0.0 to 1.0)
+
+            // Play the Vine Boom sound
+            vineBoom.play();
+
+            // Optionally, display a message to make it even funnier
+            alert('SURPRISE!');
+
+            // Change the button text to something funny
+            prankButton.textContent = "You just got pranked!";
+        }
+
+        // Attach prank function to the button
+        prankButton.addEventListener('click', prank);
+    </script>
+</body>
+</html>
