@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vine Boom Prank</title>
+    <title>System Crash Prank</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
             margin-top: 50px;
-            background-color: #222;
-            color: white;
-            padding: 50px;
+            background-color: black;
+            color: red;
+        }
+        .warning {
+            background-color: #ff0000;
+            padding: 30px;
+            font-size: 24px;
+            border: 5px solid yellow;
+            margin-top: 100px;
+            box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.5);
         }
         button {
             padding: 20px;
             font-size: 18px;
-            cursor: pointer;
             background-color: #ff5733;
             border: none;
             border-radius: 8px;
+            cursor: pointer;
         }
         button:hover {
             background-color: #c0392b;
@@ -27,33 +34,19 @@
     </style>
 </head>
 <body>
-    <h1>Click the Button to Hear Something Funny!</h1>
-    <button id="prankButton">Do it!</button>
+    <div id="crash-warning" class="warning">
+        <h1>ERROR: SYSTEM CRASH DETECTED</h1>
+        <p>Your computer has encountered a critical error and is about to crash.</p>
+        <button id="fixButton">Fix Now!</button>
+    </div>
 
-    <audio id="vineBoom" src="vineboom.mp3" preload="auto"></audio> <!-- Vine Boom sound -->
-    
     <script>
-        // Get the button and sound
-        const prankButton = document.getElementById('prankButton');
-        const vineBoom = document.getElementById('vineBoom');
-        
-        // Function to simulate the "volume" prank
-        function prank() {
-            // Increase volume by setting it to max (1.0 is full volume)
-            vineBoom.volume = 1.0; // Can adjust volume levels (0.0 to 1.0)
+        const fixButton = document.getElementById("fixButton");
 
-            // Play the Vine Boom sound
-            vineBoom.play();
-
-            // Optionally, display a message to make it even funnier
-            alert('SURPRISE!');
-
-            // Change the button text to something funny
-            prankButton.textContent = "You just got pranked!";
-        }
-
-        // Attach prank function to the button
-        prankButton.addEventListener('click', prank);
+        fixButton.addEventListener("click", function() {
+            // Change the page content to a funny surprise
+            document.body.innerHTML = "<h1>Just Kidding!</h1><p>Your system is perfectly fine. It was just a prank!</p>";
+        });
     </script>
 </body>
 </html>
