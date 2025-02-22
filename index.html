@@ -3,49 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Crash Prank</title>
+    <title>System Fix Attempt</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
             background-color: black;
-            color: red;
+            color: white;
+            padding: 20px;
         }
+
         .warning {
-            background-color: #ff0000;
+            background-color: red;
             padding: 30px;
             font-size: 24px;
             border: 5px solid yellow;
-            margin-top: 100px;
             box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.5);
         }
-        button {
-            padding: 20px;
+
+        .button {
+            padding: 15px 30px;
             font-size: 18px;
             background-color: #ff5733;
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            margin-top: 20px;
         }
-        button:hover {
+
+        .button:hover {
             background-color: #c0392b;
+        }
+
+        .loading {
+            display: none;
+            font-size: 24px;
+            color: yellow;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div id="crash-warning" class="warning">
-        <h1>ERROR: SYSTEM CRASH DETECTED</h1>
-        <p>Your computer has encountered a critical error and is about to crash.</p>
-        <button id="fixButton">Fix Now!</button>
+    <div class="warning">
+        <h1>ERROR: SYSTEM DETECTED VIRUS</h1>
+        <p>We have detected a critical virus in your system. Please click the button below to begin fixing it.</p>
+        <button id="fixButton" class="button">Fix Now!</button>
+    </div>
+
+    <div id="loadingMessage" class="loading">
+        <div class="spinner"></div>
+        <p>Fixing... Please wait.</p>
     </div>
 
     <script>
         const fixButton = document.getElementById("fixButton");
+        const loadingMessage = document.getElementById("loadingMessage");
 
+        // Request Notification Permission
+        function requestNotificationPermission() {
+            if (Notification.permission !== 'granted') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        // Show the "virus detected" notification after a delay
+                        showVirusNotification();
+                    }
+                });
+            }
+        }
+
+        // Show the virus notification
+        function showVirusNotification() {
+            const notification = new Notification('Critical Virus Detected!', {
+                body: 'Your system is infected with a virus! Click to fix it.',
+                icon: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Red_X.svg'
+            });
+
+            // When the notification is clicked, redirect them to a "joke" page
+            notification.onclick = () => {
+                window.location.href = "https://example.com/joke";  // Replace with a page that says "Just Kidding!"
+            };
+        }
+
+        // Simulate loading animation and show the notification
+        function prank() {
+            // Show loading animation
+            loadingMessage.style.display = "block";
+
+            // Wait for a few seconds to simulate "fixing" the system
+            setTimeout(() => {
+                // Hide loading animation after 3 seconds
+                loadingMessage.style.display = "none";
+                // Request notification permission and show the notification
+                requestNotificationPermission();
+            }, 3000); // 3-second delay to simulate the fix
+        }
+
+        // Add event listener to the button
         fixButton.addEventListener("click", function() {
-            // Change the page content to a funny surprise
-            document.body.innerHTML = "<h1>Just Kidding!</h1><p>Your system is perfectly fine. It was just a prank!</p>";
+            // Start the prank process
+            prank();
         });
     </script>
 </body>
